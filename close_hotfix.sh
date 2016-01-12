@@ -19,3 +19,4 @@ git flow hotfix finish $2
 git push origin develop
 git push origin master
 git push --follow-tags
+git push origin --delete hotfix/$2
