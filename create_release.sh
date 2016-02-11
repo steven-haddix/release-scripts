@@ -1,14 +1,18 @@
 #!/bin/bash
 
+# Args
+# [0] - Path of repository to clone and do work on
+# [1] - Release branch name Ex. jan2 would checkout release/jan2
+
 #todo: if no args print out help explaining what to do
+set -e
+
 
 rm -rf temp
 git clone "$1" temp
 cd temp
-#this is needed to get the following git flow init to work :\
-git checkout develop
-git checkout master
-git flow init -d
-git flow release start $2
-git push origin release/$2
 
+#create release branch
+git checkout develop
+git checkout -b release/$2
+git push origin release/$2
