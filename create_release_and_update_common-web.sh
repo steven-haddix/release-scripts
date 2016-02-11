@@ -7,6 +7,7 @@ set -e
 sh create_release.sh $1 $2
 #need to go where the create_release.sh script took us
 cd temp
-npm install "git+http://gitlab.central.hq.internal/wms/common-web.git#release/$2" --save
-git commit package.json -m "Updated to release/$2 branch for common-web project"
-git push -u origin release/$2
+node ../update_common_web_reference.js package.json "git+http://gitlab.central.hq.internal/wms/common-web.git#release/$2"
+git add package.json
+git commit -m "Updated common-web to point to release/$2 branch"
+git push origin release/$2

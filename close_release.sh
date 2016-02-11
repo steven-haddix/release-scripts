@@ -1,6 +1,8 @@
 #!/bin/bash
 
-#todo: if no args print out help explaining what to do
+# Args
+# [0] - Path of repository to clone and do work on
+# [1] - Release branch name Ex. jan2 would checkout release/jan2
 
 #this is to exit early if any command fails http://stackoverflow.com/questions/1378274/in-a-bash-script-how-can-i-exit-the-entire-script-if-a-certain-condition-occurs
 set -e
@@ -8,14 +10,20 @@ set -e
 rm -rf temp
 git clone "$1" temp
 cd temp
-#this is needed to get the following git flow init to work :\
-git checkout develop
-git checkout master
-git flow init -d
-#this is needed for release finish to work
+
+#tag off release branch
 git checkout release/$2
-git flow release finish $2
-#push master and tag
+git tag -a $2 -m "tag created for $2 release"
+
+#merge to master
+git checkout master
+git merge release/$2
+
+#merge to develop
+git checkout develop
+git merge master
+
+#push master, develop, and tag and cleanup release branch
 git push origin develop
 git push origin master
 git push --follow-tags
