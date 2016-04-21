@@ -14,5 +14,7 @@ cd temp
 
 #create release branch
 git checkout develop
-git checkout -b release/$2
-git push origin release/$2
+git checkout master
+git merge develop
+#todo: tag from version number here
+git push origin --follow-tags
