@@ -1,6 +1,9 @@
 #!/bin/bash
 
-#todo: if no args print out help explaining what to do
+# Args
+# [1] - Path of repository to clone and do work on
+# [2] - Hotfix branch to close out and tag
+# [3] - Tag message
 
 #this is to exit early if any command fails http://stackoverflow.com/questions/1378274/in-a-bash-script-how-can-i-exit-the-entire-script-if-a-certain-condition-occurs
 set -e
@@ -8,15 +11,32 @@ set -e
 rm -rf temp
 git clone "$1" temp
 cd temp
-#this is needed to get the following git flow init to work :\
-git checkout develop
+
+#get to the hotfix branch
+git checkout $2
+
+# lets get the last tag!
+CURRENT_TAG=$(git describe --abbrev=0  --tags)
+ECHO "CURRENT_TAG=$CURRENT_TAG"
+NEW_TAG=$(node ../update_patch_level.js "$CURRENT_TAG")
+ECHO "NEW_TAG=$NEW_TAG"
+
+#tag from hotfix branch with new patch level
+git tag -a $NEW_TAG -m "$3"
+
+#merge to master
 git checkout master
-git flow init -d
-#this is needed for release finish to work
-git checkout hotfix/$2
-git flow hotfix finish $2
-#push master and tag
-git push origin develop
+git merge $2
+
+#merge to develop
+git checkout develop
+git merge master
+
+#push master
 git push origin master
-git push --follow-tags
-git push origin --delete hotfix/$2
+#push develop
+git push origin develop
+#push tag
+git push origin --follow-tags
+#delete hotfix branch
+git push origin --delete $2
