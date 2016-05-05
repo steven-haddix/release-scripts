@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # Args
-# [0] - Path of repository to clone and do work on
-# [1] - Release branch name Ex. jan2 would checkout release/jan2
+# [1] - Path of repository to clone and do work on
+# [2] - tag message
 
-#todo: if no args print out help explaining what to do
 set -e
 
 
@@ -16,5 +15,12 @@ cd temp
 git checkout develop
 git checkout master
 git merge develop
-#todo: tag from version number here
+
+
+#tag from version number here
+CURRENT_TAG=$(git describe --abbrev=0  --tags)
+NEW_TAG=$(node ../update_minor_level.js "$CURRENT_TAG")
+git tag -a $NEW_TAG -m "$2"
+
+#push master and tag
 git push origin --follow-tags

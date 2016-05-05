@@ -2,9 +2,8 @@
 
 # Args
 # [0] - Path of repository to clone and do work on
-# [1] - tag name (this can be automated with 'git describe' command)
-# [2] - Common-web tag to freeze dependency
-# [3] - Message for tag
+# [1] - Common-web tag to freeze dependency
+# [2] - Message for tag
 
 #todo: if no args print out help explaining what to do
 set -e
@@ -19,12 +18,14 @@ git checkout master
 git merge develop
 
 #update common-web reference
-node ../update_common_web_reference.js package.json "git+http://gitlab.central.hq.internal/wms/common-web.git#$3"
+node ../update_common_web_reference.js package.json "git+http://gitlab.central.hq.internal/wms/common-web.git#$2"
 git add package.json
-git commit -m "Updated common-web to point to $3 branch"
+git commit -m "Updated common-web to point to $2 branch"
 
 #tag
-git tag -a $2 -m "$4"
+CURRENT_TAG=$(git describe --abbrev=0  --tags)
+NEW_TAG=$(node ../update_minor_level.js "$CURRENT_TAG")
+git tag -a $NEW_TAG -m "$3"
 
-#push
+#push master and tag
 git push origin --follow-tags
