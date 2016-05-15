@@ -1,0 +1,19 @@
+{
+  "name": "release-scripts",
+  "version": "1.0.0",
+  "description": "collection of scripts and helpers around managing branching and releases",
+  "main": "index.js",
+  "bin": {
+    "update_minor_version": "./updated_minor_level.js",
+    "updated_patch_version": "./updated_patch_level.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://gitlab/tkell01/release_scripts.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
