@@ -14,7 +14,6 @@
     "type": "git",
     "url": "http://gitlab/tkell01/release_scripts.git"
   },
-  "private": true,
   "author": "",
   "license": "ISC"
 }
