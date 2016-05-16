@@ -10,8 +10,8 @@ Arg1: version tag
 //grab input
 var tagVersion = process.argv[2];
 //sanity check
-if(!tagVersion || !tagVersion.match(/^[v]\d+\.\d+\.\d+$/)) {
-	console.log("You must provide a tag that matches the correct version. Ex. v2.0.0");
+if(!tagVersion || !tagVersion.match(/^[v]?\d+\.\d+\.\d+$/)) {
+	console.log("You must provide a tag that matches the correct version. Ex. v2.0.0 or 2.0.0");
 	process.exit(-1);
 }
 
