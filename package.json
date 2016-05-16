@@ -1,5 +1,5 @@
 {
-  "name": "release-scripts",
+  "name": "wendys-release-scripts",
   "version": "1.0.0",
   "description": "collection of scripts and helpers around managing branching and releases",
   "main": "index.js",
