@@ -1,4 +1,4 @@
 module.exports = {
-  "update_minor_version": "./updated_minor_level.js",
-  "updated_patch_version": "./updated_patch_level.js"
+  "update_minor_version": "./update_minor_version.js",
+  "update_patch_version": "./update_patch_version.js"
 };

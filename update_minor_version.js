@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
 Takes in a tag version and updates the patch level and passes that back.
 Example: v1.2.0 -> v1.2.1
@@ -14,8 +16,8 @@ if(!tagVersion || !tagVersion.match(/^[v]\d+\.\d+\.\d+$/)) {
 }
 
 //increment patch level
-var newTagVersion = tagVersion.replace(/(\d+)$/, function(patchLevel) {
-	return parseInt(patchLevel) + 1;
+var newTagVersion = tagVersion.replace(/(\d+)\.\d+$/, function(match, minorVersion ) {
+	return (parseInt(minorVersion) + 1).toString() + ".0";
 });
 
 console.log(newTagVersion);
