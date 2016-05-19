@@ -24,7 +24,7 @@ git commit -m "Updated common-web to point to $2 branch"
 
 #tag
 CURRENT_TAG=$(git describe --abbrev=0  --tags)
-NEW_TAG=$(node ../update_minor_level.js "$CURRENT_TAG")
+NEW_TAG=$(node ../update_minor_version.js "$CURRENT_TAG")
 git tag -a $NEW_TAG -m "$3"
 
 #push master and tag

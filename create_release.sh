@@ -19,7 +19,7 @@ git merge develop
 
 #tag from version number here
 CURRENT_TAG=$(git describe --abbrev=0  --tags)
-NEW_TAG=$(node ../update_minor_level.js "$CURRENT_TAG")
+NEW_TAG=$(node ../update_minor_version.js "$CURRENT_TAG")
 git tag -a $NEW_TAG -m "$2"
 
 #push master and tag
