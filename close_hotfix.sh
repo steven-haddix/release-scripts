@@ -18,7 +18,7 @@ git checkout $2
 # lets get the last tag!
 CURRENT_TAG=$(git describe --abbrev=0  --tags)
 ECHO "CURRENT_TAG=$CURRENT_TAG"
-NEW_TAG=$(node ../update_patch_level.js "$CURRENT_TAG")
+NEW_TAG=$(node ../update_patch_version.js "$CURRENT_TAG")
 ECHO "NEW_TAG=$NEW_TAG"
 
 #tag from hotfix branch with new patch level
