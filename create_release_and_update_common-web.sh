@@ -20,7 +20,7 @@ git merge develop
 #update common-web reference
 node ../update_common_web_reference.js package.json "git+http://gitlab.central.hq.internal/wms/common-web.git#$2"
 git add package.json
-git commit -m "Updated common-web to point to $2 branch"
+git commit -m "Updated common-web to point to $2 branch" || true
 
 #tag
 CURRENT_TAG=$(git describe --abbrev=0  --tags)
