@@ -1,5 +1,5 @@
 {
-  "name": "wendys-release-scripts",
+  "name": "release-scripts",
   "version": "1.0.0",
   "description": "collection of scripts and helpers around managing branching and releases",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://gitlab/tkell01/release_scripts.git"
+    "url": "https://github.com/steven-haddix/release-scripts.git"
   },
   "author": "",
   "license": "ISC"
